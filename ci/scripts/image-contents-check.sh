@@ -93,6 +93,11 @@ else
 	fail "/usr/bin/kube-burner-ocp is missing or cannot run"
 fi
 
+echo "==> checking jq for kube-burner-ocp lifecycle hooks"
+if ! run_cmd sh -c 'command -v jq && jq --version'; then
+	fail "jq is missing or cannot run"
+fi
+
 echo "==> checking /usr/bin/kubectl"
 if run_cmd /usr/bin/kubectl version --client >/dev/null 2>&1; then
 	echo "  kubectl: present"
